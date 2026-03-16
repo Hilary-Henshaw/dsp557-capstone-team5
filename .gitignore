@@ -15,7 +15,10 @@ __pycache__/
 # Notebooks
 .ipynb_checkpoints/
 
-# OS / editor
+# OS / editoreditor
 .DS_Store
 .vscode/
 .idea/
+
+# Config
+config/dev/db_config.yaml

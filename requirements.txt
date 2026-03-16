@@ -3,3 +3,5 @@ numpy
 sqlalchemy
 matplotlib
 scikit-learn
+psycopg2-binary
+pyyaml
