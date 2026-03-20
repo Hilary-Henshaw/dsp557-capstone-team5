@@ -15,7 +15,7 @@
 - Machine learning models to predict customers that will be retained vs leave
 - LLM Chatbot to ask questions regarding which customers are likely to be retained and which factors lead to that
 
-## Tools $ Technologies
+## Tools & Technologies
 - Power BI (Data visualization & dashboarding)
 - Python (Data preprocessing, Model Prediction)
 - SQL (Data querying)
