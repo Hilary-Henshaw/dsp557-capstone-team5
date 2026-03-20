@@ -6,3 +6,4 @@
 ## Ashley Velazques:
 
 ## Hilary Henshaw:
+- Machine Learning Models to predict churn           Due 03/22/2026
