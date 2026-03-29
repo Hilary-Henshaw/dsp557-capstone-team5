@@ -20,7 +20,7 @@ The aim of this project is to develop a data-driven predictive analytics solutio
 ### Dashboards/Visualizations
 - Results will be presented through an interactive dashboard using tools such as Power BI and Tableau. This dashboard will allow users to explore churn trends, identify high-risk customers, and gain insights into key drivers of churn.
 
-# Possible Outcomes
+## Possible Outcomes
 - The expected outcome of this project is the development of a predictive model capable of identifying customers who are at high risk if leaving a service. Additionally, the analysis is expected to reveal key factors that influence customer churn, such as contract type, service usage patterns, and billing characteristics. 
 - The project may also provide a comparative evaluation of different machine learning models, highlighting the strengths and limitations of each approach in the context of churn prediction. Visualizations and summary statistics will further support the interpretation of results and provide a clear understanding of customer behavior. 
 
