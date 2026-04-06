@@ -1,0 +1,17 @@
+import pandas as pd
+
+
+def clean_data(data_path, dest_path):
+    churn_data = pd.read_csv(data_path)
+    churn_data["TotalCharges"] = pd.to_numeric(churn_data["TotalCharges"], errors="coerce")
+    churn_data["MonthlyCharges"] = pd.to_numeric(churn_data["MonthlyCharges"], errors="coerce")
+    churn_data["SeniorCitizen"] = churn_data["SeniorCitizen"].map({1: "Yes", 0: "No"})
+    churn_data = churn_data.dropna(subset=["TotalCharges"])
+    churn_data.to_csv(dest_path, index=False)
+    print(f"Cleaned dataset saved as {dest_path}")
+
+
+if __name__ == "__main__":
+    data_path = "../../data/raw/WA_Fn-UseC_-Telco-Customer-Churn.csv"
+    dest_path = "../../data/processed/churn_data_cleaned.csv"
+    clean_data(data_path, dest_path)
