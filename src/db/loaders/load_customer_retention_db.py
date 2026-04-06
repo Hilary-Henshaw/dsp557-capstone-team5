@@ -27,9 +27,15 @@ def _load_schema_sql() -> str:
     return schema_path.read_text()
 
 
+def _load_full_table_view_sql() -> str:
+    view_path = PROJECT_ROOT / "src" / "db" / "schema" / "full_table_view.sql"
+    return view_path.read_text()
+
+
 def recreate_schema(engine) -> None:
-    # Drop child tables first due to FKs
+    # Views must be dropped before tables they reference (e.g. v_fulltable -> outcomes).
     drops = [
+        "DROP VIEW IF EXISTS v_fulltable CASCADE;",
         "DROP TABLE IF EXISTS outcomes;",
         "DROP TABLE IF EXISTS billing;",
         "DROP TABLE IF EXISTS services;",
@@ -47,7 +53,7 @@ def load_csv(env: str = "dev") -> None:
     cfg = load_db_config(env)
     engine = make_engine(cfg)
 
-    csv_path = PROJECT_ROOT / "data" / "raw" / "WA_Fn-UseC_-Telco-Customer-Churn.csv"
+    csv_path = PROJECT_ROOT / "data" / "processed" / "churn_data_cleaned.csv"
 
     df = pd.read_csv(csv_path)
 
@@ -56,6 +62,14 @@ def load_csv(env: str = "dev") -> None:
 
     # Some rows in this dataset have blank TotalCharges; coerce to numeric
     df["totalcharges"] = pd.to_numeric(df["totalcharges"], errors="coerce")
+
+    # DB column is INTEGER; cleaned CSV may have "Yes"/"No" if ETL mapped it
+    sc = df["seniorcitizen"]
+    if sc.dtype == object:
+        df["seniorcitizen"] = sc.map({"Yes": 1, "No": 0})
+    else:
+        df["seniorcitizen"] = pd.to_numeric(sc, errors="coerce")
+    df["seniorcitizen"] = df["seniorcitizen"].fillna(0).astype(int)
 
     recreate_schema(engine)
 
@@ -93,6 +107,9 @@ def load_csv(env: str = "dev") -> None:
     df[services_cols].to_sql("services", engine, if_exists="append", index=False)
     df[billing_cols].to_sql("billing", engine, if_exists="append", index=False)
     df[outcomes_cols].to_sql("outcomes", engine, if_exists="append", index=False)
+
+    with engine.begin() as conn:
+        conn.execute(text(_load_full_table_view_sql()))
 
 
 if __name__ == "__main__":
