@@ -1,0 +1,136 @@
+1.  Best Model Insight
+
+Logistic Regression performed the best overall** based on F1 score (~0.63) 
+Even though some models had higher accuracy, Logistic Regression:
+
+  * Balanced (precision + recall better)
+  * Captured churners more effectively (which is what businesses care about)
+
+👉 Takeaway:
+This is a **business-focused model**, not just accuracy-focused — it prioritizes catching customers who are likely to leave.
+
+
+2. Model Performance (What it actually means)
+
+* Accuracy: ~73% → decent overall predictions
+* Recall (very important): ~80% 
+* Precision: ~49%
+
+👉 Interpretation:
+
+* The model is very good at identifying customers who WILL churn
+* But it also flags some customers who won’t actually churn (false positives)
+
+Business meaning:**
+
+  * ❌ Contacting a few extra customers
+  * ✅ Rather than missing real churners
+
+
+⚠️ 3. Biggest Drivers of Customer Churn
+
+Top features impacting churn:
+
+1. **Tenure (MOST important)**
+2. **Monthly Charges**
+3. **Internet Service Type**
+4. **Total Charges**
+5. **Payment Method** 
+
+👉 Interpretation:
+
+🧠 Key patterns:
+
+   * Low tenure = high churn**
+
+   * New customers are the most likely to leave
+   * Higher monthly charges = higher churn risk**
+
+   * Price sensitivity is a major factor
+   * Service type matters**
+
+   * Some internet/service plans drive dissatisfaction
+   * Payment method influence**
+
+   * Possibly linked to convenience or billing experience
+
+👉 Business insight:
+
+   * Early customer experience is critical
+   * Pricing strategy directly affects retention
+
+
+📉 4. Customer Segmentation (Risk Levels)
+
+   * High Risk (≥ 0.70)**
+   * Medium Risk (0.40–0.69)**
+   * Low Risk (< 0.40)** 
+
+👉 Insight:
+
+   * High risk → immediate action
+   * Medium → monitor
+   * Low → retain normally
+
+🚨 5. High-Risk Customers Insight
+
+  * Many customers have >90% churn probability 
+  * Some predicted to churn actually stayed (false positives)
+
+👉 Interpretation:
+
+  * These customers are still at-risk behaviorally
+  * Even if they didn’t leave, they:
+
+     * May be dissatisfied
+     * Could churn soon
+
+👉 Business value:**
+
+  * Perfect target group for:
+
+     * Discounts
+     * Loyalty programs
+     * Customer success outreach
+
+6. Confusion Matrix Insight
+
+  * Model predicts “Stay” very accurately (~90% precision)
+  * But struggles more with exact churn prediction precision
+
+👉 Meaning:
+
+  * Strong at identifying stable customers
+  * Aggressive at flagging churn (which is intentional)
+
+💡 7. Strategic Business Insights 
+
+   🎯 Retention Strategy
+
+     * Business should focus on new customers (low tenure)
+     * Improve onboarding experience
+
+💰 Pricing Strategy
+
+   * High monthly charges increase churn
+   * Consider:
+       * Bundles
+       * Discounts for high-cost users
+
+📞 Customer Intervention
+
+   * Use risk levels to prioritize outreach
+   * High-risk customers = immediate retention campaigns
+
+⚙️ Product/Service Improvement
+
+   * Investigate **internet/service types linked to churn**
+   * Fix poor-performing offerings
+
+🧠 Final Big Picture Insight
+
+👉 Model is not just predicting churn — it’s:
+
+   * Identifying **why customers leave**
+   * Allowing **targeted business decisions**
+   * Turning data into **actionable strategy**
