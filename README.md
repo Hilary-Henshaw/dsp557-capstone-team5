@@ -1,31 +1,159 @@
-# DSP 557 Capstone Project:
+# Capstone Project:
 #### Group Members
-- Kyle Nadeau
 - Hilary Henshaw
+- Kyle Nadeau
 - Ashley Velasquez
 
-## Project Goals
-The aim of this project is to develop a data-driven predictive analytics solution that can accurately predict and identify customer churn and help businesses understand the key factors influencing the decisions of customers to leave. By analyzing historical customer data, the project seeks to identify patterns and uncover trends associated with churn behavior. Additionally the project aims to segment customers into different risk levels (low, medium, high) and provide actionable insights that businesses can use to support and implement targeted retention strategies. Ultimately, this project will demonstrate how data-driven approaches can enable organizations to support better decision-making to reduce customer loss, improve customer satisfaction, and make more informed business decisions using predictive analytics.
+# Customer Churn Prediction and Analysis
 
+## Overview
 
-## Methodologies
-### Data Source
-- The Telco Customer Churn dataset will be used for this project, it includes customer demographics, service usage, and billing information. The Project will follow a structured data analytics approach, beginning with data collection and preprocessing. Data cleaning will involve handling missing values, converting data types and encoding categorical variables into numerical formats suitable for modeling.
-    - - https://www.kaggle.com/datasets/blastchar/telco-customer-churn
-### Exploratory Analysis
-- Exploratory Data Analysis (EDA) will be conducted using Python to identify trends, correlations, and patterns within the data. Power Bi visualization will be used to further examine how factors such as contract type, tenure and monthly charges correlate with customer churn.
-### Machine Learning
-- Following EDA, multiple machine learning models will be developed and evaluated, including Logistic Regression, Random Forest, and Gradient Boosting. These models will be compared using performance metrics such as accuracy, precision, recall, F1-score, and ROC-AUC.
-    - Based on the evaluation results, Gradient Boosting was identified as the best-performing model, achieving an accuracy of 80.41%. As a result, this model will be selected as the final model for predicting customer churn, due to its ability to capture complex patterns and interactions within the data.
-### Dashboards/Visualizations
-- Results will be presented through an interactive dashboard using tools such as Power BI and Tableau. This dashboard will allow users to explore churn trends, identify high-risk customers, and gain insights into key drivers of churn.
+This project focuses on predicting customer churn using machine learning and identifying the key factors that contribute to customer attrition. The goal is to help businesses better understand churn behavior and make data-driven decisions to improve customer retention.
 
-## Possible Outcomes
-- The expected outcome of this project is the development of a predictive model capable of identifying customers who are at high risk if leaving a service. Additionally, the analysis is expected to reveal key factors that influence customer churn, such as contract type, service usage patterns, and billing characteristics. 
-- The project may also provide a comparative evaluation of different machine learning models, highlighting the strengths and limitations of each approach in the context of churn prediction. Visualizations and summary statistics will further support the interpretation of results and provide a clear understanding of customer behavior. 
+The workflow includes data preprocessing, model training, evaluation, and translating results into actionable business insights. The final outputs can be used for dashboards, reporting, and decision-making.
 
-## Implications of the proposed project
-The success of this project has the potential to enhance both business workflows and customer management, as well as the raw customer experience. From  a business perspective, customers with a high likelihood to churn will be identified early, showing exactly which predictors led to this high churn risk. Having access to this information is extremely valuable as plans can be put in place to keep these high churn risk customers through driving down/up predictors leading to the risk in the first place. Without this data, companies are left completely blind to which customers are expected to stay and which will be planning to go elsewhere. Through successfully implementing strategies to drive retention, companies will be able to reduce the loss of revenue due to customer churn. Financial metrics are for the most part the main indication of success for a company, and customer retention is a main focus in keeping these metrics consistent and driving upward. From a customer perspective, any company with a focus on customer retention will generally be enhancing the overall customer experience to do so. Customer satisfaction will be expected to increase due to initiatives to target high churn risk customers, allowing for happy customers with long-term loyalty. In addition, the success of this project will show how valuable machine learning techniques can be in identifying customer churn, and how any field of business with customers can implement these methods and models for themselves.
+---
+
+## Dataset
+
+The dataset used is the Telco Customer Churn dataset, which includes customer demographics, account information, and service usage.
+
+After cleaning:
+
+* Total records: 7,032
+* Features: 20
+* Target variable: Churn (0 = Stay, 1 = Leave) 
+
+Key preprocessing steps:
+
+* Converted TotalCharges and MonthlyCharges to numeric
+* Handled missing values by removing incomplete rows
+* Encoded categorical variables using one-hot encoding
+* Standardized numerical features
+
+---
+
+## Methodology
+
+### Models Implemented
+
+* Logistic Regression
+* Random Forest
+* Extra Trees
+* Gradient Boosting
+* K-Nearest Neighbors
+
+### Evaluation Metrics
+
+* Accuracy
+* Precision
+* Recall
+* F1 Score
+* ROC AUC
+
+Stratified 5-fold cross-validation was used to ensure balanced evaluation across churn classes.
+
+---
+
+## Model Performance
+
+| Model               | Accuracy | Precision | Recall | F1 Score | ROC AUC |   |
+| ------------------- | -------- | --------- | ------ | -------- | ------- | - |
+| Logistic Regression | 0.75     | 0.52      | 0.80   | 0.63     | 0.85    |   |
+| Gradient Boosting   | 0.80     | 0.66      | 0.52   | 0.58     | 0.85    |   |
+| KNN                 | 0.77     | 0.57      | 0.54   | 0.56     | 0.80    |   |
+| Random Forest       | 0.79     | 0.64      | 0.49   | 0.55     | 0.83    |   |
+| Extra Trees         | 0.77     | 0.59      | 0.47   | 0.52     | 0.79    |   |
+
+### Final Model Selection
+
+Logistic Regression was selected as the final model due to its strong balance between recall and F1 score.
+
+---
+
+## Key Insights
+
+### 1. Customer Retention Patterns
+
+* Customers with **low tenure** are the most likely to churn
+* Early-stage customer experience plays a critical role in retention
+
+### 2. Pricing Impact
+
+* Higher **monthly charges** are associated with increased churn risk
+* Pricing sensitivity is a major driver of customer decisions
+
+### 3. Service Influence
+
+* Certain **internet service types** contribute more to churn
+* Indicates potential issues in service quality or value perception
+
+### 4. Customer Value Indicators
+
+* Total charges and payment methods also influence churn behavior
+* These features help identify long-term engagement patterns
+
+---
+
+## Feature Importance
+
+Top drivers of churn:
+
+1. Tenure
+2. Monthly Charges
+3. Internet Service
+4. Total Charges
+5. Payment Method 
+
+Tenure is the most important factor, indicating that customer lifecycle stage is the strongest predictor of churn.
+
+---
+
+## Model Behavior
+
+* High recall (~80%) means the model successfully identifies most customers who will churn
+* Lower precision (~49%) means some non-churn customers are flagged as churn
+
+This tradeoff is intentional, as missing a churn customer is more costly than incorrectly flagging one.
+
+---
+
+## Customer Risk Segmentation
+
+Customers were grouped based on predicted churn probability:
+
+* High Risk: ≥ 0.70
+* Medium Risk: 0.40 – 0.69
+* Low Risk: < 0.40 
+
+This segmentation allows businesses to prioritize intervention strategies.
+
+---
+
+## Business Applications
+
+### Targeted Retention
+
+* Focus on high-risk customers with personalized outreach
+* Implement loyalty programs and incentives
+
+### Pricing Optimization
+
+* Reevaluate pricing for customers with high monthly charges
+* Introduce flexible plans or bundles
+
+### Customer Experience Improvement
+
+* Improve onboarding for new customers
+* Address service-related issues tied to churn
+
+### Decision Support
+
+* Integrate predictions into Power BI dashboards
+* Enable real-time monitoring of churn risk
+
+---
 
 ## Conclusion
-Our project and team have the potential to re-define how companies implement customer retention strategies. Each team member’s background is what our project is built around, being machine learning and LLM techniques, retention analysis in a healthcare domain, data exploration and modeling in MATLAB, computer engineering and more “low-level” languages like C++ for optimization, along with a mastery of several other data science techniques learned throughout our master’s program. We hope to bring real world solutions that can be realistically implemented into any company's workflow to effortlessly identify customers with high churn risk, along with what exactly is driving the risk, and even suggestions to drive retention.
+
+This project demonstrates how machine learning can be used not only to predict churn but also to uncover the underlying drivers of customer behavior. By combining predictive modeling with business insights, organizations can take proactive steps to reduce churn and improve long-term customer retention.
