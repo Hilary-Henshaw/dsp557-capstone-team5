@@ -22,3 +22,6 @@ __pycache__/
 
 # Config
 config/dev/db_config.yaml
+
+# Compiled C++ helpers
+src/cpp_engine/*.dylib
