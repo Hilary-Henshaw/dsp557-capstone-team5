@@ -1,3 +1,5 @@
+import pathlib
+
 import pandas as pd
 
 
@@ -15,6 +17,7 @@ def clean_data(data_path, dest_path):
 
 
 if __name__ == "__main__":
-    data_path = "../../data/raw/WA_Fn-UseC_-Telco-Customer-Churn.csv"
-    dest_path = "../../data/processed/churn_data_cleaned.csv"
-    clean_data(data_path, dest_path)
+    repo_root = pathlib.Path(__file__).resolve().parents[2]
+    data_path = repo_root / "data" / "raw" / "WA_Fn-UseC_-Telco-Customer-Churn.csv"
+    dest_path = repo_root / "data" / "processed" / "churn_data_cleaned.csv"
+    clean_data(str(data_path), str(dest_path))

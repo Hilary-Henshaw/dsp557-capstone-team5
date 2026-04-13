@@ -153,6 +153,44 @@ This segmentation allows businesses to prioritize intervention strategies.
 * Enable real-time monitoring of churn risk
 
 ---
+## How to Run Project (MacOS)
+### Setup Postgres SQL Database
+* Requires local version of project database
+- Install and run in terminal:
+```
+brew install postgresql
+brew services start postgresql
+```
+- Open PostgresSQL and create new database:
+```
+psql -d postgres
+CREATE DATABASE customer_retention;
+```
+### Setup config.yaml File
+- Config file to hold credentials for your database
+```yaml
+host: localhost
+port: 5432
+database: customer_retention
+user: username
+password: password
+```
+- Add file to directory in project root called "config"
+### Compile C++ Library
+- Run in project root directory:
+```
+g++ -shared -fPIC -std=c++17 -o src/cpp_engine/libchurn_risk.dylib src/cpp_engine/churn_risk.cpp
+```
+### Run Pipeline
+- Run in project root directory:
+```
+make pipeline
+```
+- This will run every portion of the project with one command
+### Result
+- View PowerBi dashboard in respective directory
+
+---
 
 ## Conclusion
 

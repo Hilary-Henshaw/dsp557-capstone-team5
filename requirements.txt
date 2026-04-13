@@ -7,3 +7,4 @@ scikit-learn
 psycopg2-binary
 pyyaml
 ipykernel
+nbconvert
