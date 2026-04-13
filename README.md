@@ -188,7 +188,8 @@ make pipeline
 ```
 - This will run every portion of the project with one command
 ### Result
-- View PowerBi dashboard in respective directory
+- View PowerBi dashboard in respective directory or using link:
+    - https://app.powerbi.com/groups/me/reports/5b8d1043-9caa-48cd-9f30-a787fcf199e4/0bc019c3245cef08c75c?ctid=426d2a8d-9ccd-4255-893d-0686a32c168d&openReportSource=ReportInvitation&experience=power-bi
 
 ---
 
