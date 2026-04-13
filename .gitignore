@@ -5,12 +5,7 @@ __pycache__/
 *.pyd
 
 # Virtual environments
-
-
-# Data files
-/data/raw/
-/data/processed/
-
+# Using conda env
 
 # Notebooks
 .ipynb_checkpoints/
